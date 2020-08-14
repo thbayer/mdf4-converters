@@ -9,13 +9,16 @@ def echoWorkspace()
 }
 
 pipeline {
-    agent any
+    agent {
+        docker { image 'debian:stretch'}
+    }
 
     stages {
         stage("Build and start test image") {
             steps {
                 echoWorkspace()
                 sh '''
+                    uname -r
                     mkdir build
                     cd build
                     cmake -DCMAKE_BUILD_TYPE=Release ..

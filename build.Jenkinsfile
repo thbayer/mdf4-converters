@@ -10,7 +10,7 @@ def echoWorkspace()
 
 pipeline {
     agent {
-        docker { image 'rb-dtr.de.bosch.com/etasehe/getk-p3-build_buster:git-32cae53bd'}
+        docker { image 'buster:mdf4'}
     }
 
     stages {

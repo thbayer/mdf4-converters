@@ -71,10 +71,15 @@ namespace mdf {
         pathSeparator = ptr->path_separator.value();
 
         if(flags != 0x01) {
+#define USE_CG_DATA_BYTES_FOR_RECORD_SIZE
+#ifdef USE_CG_DATA_BYTES_FOR_RECORD_SIZE
+            recordSize = dataBytes;
+#else
             // Calculate record size all from channels.
             std::shared_ptr<CNBlock> cnBlock = getFirstCNBlock();
 
             uint32_t largest = 0;
+            uint32_t largest = dataBytes*8;
 
             while (cnBlock) {
                 // Calculate the size of the current block, if not variable length.
@@ -98,6 +103,7 @@ namespace mdf {
             if (largest % 8 != 0) {
                 recordSize += largest - (largest % 8);
             }
+#endif
         } else {
             recordSize = -1;
         }

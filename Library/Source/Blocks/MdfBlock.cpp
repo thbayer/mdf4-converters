@@ -11,6 +11,7 @@
 #include "SDBlockContinuous.h"
 #include "SIBlock.h"
 #include "TXBlock.h"
+#include "CABlock.h"
 
 #include <boost/endian/buffers.hpp>
 #include <boost/endian/conversion.hpp>
@@ -59,6 +60,10 @@ namespace mdf {
             case MdfBlockType_TX:
                 result = std::make_shared<TXBlock>();
                 break;
+            case MdfBlockType_CA:
+                result = std::make_shared<CABlock>();
+                break;
+
             default:
                 break;
         }

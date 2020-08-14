@@ -40,6 +40,7 @@ namespace mdf {
         MdfBlockType_SI = strToU64("##SI"),
         MdfBlockType_SD = strToU64("##SD"),
         MdfBlockType_TX = strToU64("##TX"),
+        MdfBlockType_CA = strToU64("##CA"),
     };
 
     std::string typeToString(MdfBlockType type);

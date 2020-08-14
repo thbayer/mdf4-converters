@@ -109,6 +109,7 @@ set(SOURCE_FILES
     Source/Blocks/SDBlockDiscontinuous.cpp
     Source/Blocks/SIBlock.cpp
     Source/Blocks/TXBlock.cpp
+    Source/Blocks/CABlock.cpp
 
     Source/Iterators/GenericIterator.cpp
     Source/Iterators/RecordIterator.cpp
@@ -128,6 +129,7 @@ set(LIBRARIES_FINAL
     Boost::log
     fmt::fmt
     tinyxml2::tinyxml2
+    stdc++fs
     )
 
 # Create static library.

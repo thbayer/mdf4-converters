@@ -2,7 +2,7 @@
 
 properties([
     parameters([
-        booleanParam(defaultValue: (BRANCH_NAME == "develop"), description: '''Do you want to deploy this build to the Artifactory?''', name: 'IsDeployToArtifactory'),
+        booleanParam(defaultValue: (BRANCH_NAME == "etas"), description: '''Do you want to deploy this build to the Artifactory?''', name: 'IsDeployToArtifactory'),
     ])
 ])
 

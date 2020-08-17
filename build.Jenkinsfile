@@ -1,5 +1,12 @@
 #!/usr/bin/env groovy
 
+properties([
+    parameters([
+        booleanParam(defaultValue: (BRANCH_NAME == "develop"), description: '''Do you want to deploy this build to the Artifactory?''', name: 'IsDeployToArtifactory'),
+    ])
+])
+
+
 /**
 Print the node and the workspace where the script is executed.
 */

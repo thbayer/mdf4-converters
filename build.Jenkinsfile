@@ -22,7 +22,11 @@ pipeline {
     agent any
 
     stages {
-        stage("Build and start test image") {
+        stage("Checkout") {
+            echo "Fetching sources ...."
+        }
+            
+        stage("Build") {
             steps {
                 echoWorkspace()
                 sh '''
@@ -39,6 +43,11 @@ pipeline {
                 '''
             }
         }
+        
+        stage("Deploy") {
+            echo "Deploying to artifactory ..."
+        }
+        
     }
     post {
         always {

@@ -23,7 +23,9 @@ pipeline {
 
     stages {
         stage("Checkout") {
-            echo "Fetching sources ...."
+            steps {
+                echo "Fetching sources ...."
+            }
         }
             
         stage("Build") {
@@ -45,7 +47,9 @@ pipeline {
         }
         
         stage("Deploy") {
-            echo "Deploying to artifactory ..."
+            steps {
+                echo "Deploying to artifactory ..."
+            }
         }
         
     }

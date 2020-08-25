@@ -25,8 +25,6 @@ pipeline {
             steps {
                 echoWorkspace()
                 sh '''
-                    export http_proxy=http://127.0.0.1:3128
-                    export https_proxy=http://127.0.0.1:3128
                     mkdir build
                     cd build
                     cmake -DCMAKE_BUILD_TYPE=Release ..

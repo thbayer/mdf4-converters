@@ -17,7 +17,7 @@ def echoWorkspace()
 
 pipeline {
     agent {
-        docker { image 'buster:mdf4'}
+        docker { image 'ubuntu:20.04'}
     }
 
     stages {

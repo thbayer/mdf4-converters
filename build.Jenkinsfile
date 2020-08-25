@@ -16,9 +16,10 @@ def echoWorkspace()
 }
 
 pipeline {
-    agent {
+    /*agent {
         docker { image 'ubuntu:20.04'}
-    }
+    }*/
+    agent any
 
     stages {
         stage("Build and start test image") {

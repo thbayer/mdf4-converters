@@ -16,10 +16,9 @@ def echoWorkspace()
 }
 
 pipeline {
-    /*agent {
-        docker { image 'ubuntu:20.04'}
-    }*/
-    agent any
+    agent {
+        docker { image 'debian10:mdf4'}
+    }
 
     stages {
         stage("Checkout") {

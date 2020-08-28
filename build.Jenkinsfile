@@ -16,9 +16,7 @@ def echoWorkspace()
 }
 
 pipeline {
-    agent {
-        none
-    }
+    agent none 
     
     stages {
         stage("Checkout") {

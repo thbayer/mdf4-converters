@@ -16,10 +16,6 @@ def echoWorkspace()
 }
 
 pipeline {
-    agent {
-        docker { image 'debian10:mdf'}
-    }
-
     stages {
         stage("Checkout") {
             steps {
@@ -28,22 +24,50 @@ pipeline {
         }
             
         stage("Build") {
-            steps {
-                echoWorkspace()
-                sh '''
-                    mkdir build
-                    cd build
-                    export http_proxy=http://172.17.0.1:3128
-                    export https_proxy=http://172.17.0.1:3128
-                    cmake -DCMAKE_BUILD_TYPE=Release ..
-                    make Boost_builder
-                    make botan_builder
-                    make fmt_builder
-                    make heatshrink_builder
-                    make tinyxml2_builder
-                    cmake -DCMAKE_BUILD_TYPE=Release ..
-                    make mdf2finalized
-                '''
+            parallel {
+                stage("Debian") {
+                    agent {
+                        docker { image 'debian10:mdf'}
+                    }
+                    steps {
+                        sh '''
+                            mkdir build
+                            cd build
+                            export http_proxy=http://172.17.0.1:3128
+                            export https_proxy=http://172.17.0.1:3128
+                            cmake -DCMAKE_BUILD_TYPE=Release ..
+                            make Boost_builder
+                            make botan_builder
+                            make fmt_builder
+                            make heatshrink_builder
+                            make tinyxml2_builder
+                            cmake -DCMAKE_BUILD_TYPE=Release ..
+                            make mdf2finalized
+                        '''
+                    }   
+                }
+
+                stage("Ubuntu") {
+                    agent {
+                        docker { image 'ubuntu20:mdf'}
+                    }
+                    steps {
+                        sh '''
+                            mkdir build
+                            cd build
+                            export http_proxy=http://172.17.0.1:3128
+                            export https_proxy=http://172.17.0.1:3128
+                            cmake -DCMAKE_BUILD_TYPE=Release ..
+                            make Boost_builder
+                            make botan_builder
+                            make fmt_builder
+                            make heatshrink_builder
+                            make tinyxml2_builder
+                            cmake -DCMAKE_BUILD_TYPE=Release ..
+                            make mdf2finalized
+                        '''
+                    }   
+                }
             }
         }
         

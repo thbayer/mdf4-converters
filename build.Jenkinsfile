@@ -33,6 +33,7 @@ pipeline {
                 sh '''
                     mkdir build
                     cd build
+                    wget www.google.com
                     cmake -DCMAKE_BUILD_TYPE=Release ..
                     make Boost_builder
                     make botan_builder

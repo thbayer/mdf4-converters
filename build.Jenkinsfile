@@ -33,6 +33,8 @@ pipeline {
                 sh '''
                     mkdir build
                     cd build
+                    export http_proxy=http://127.0.0.1:3128
+                    export https_proxy=http://127.0.0.1:3128
                     wget www.google.com
                     cmake -DCMAKE_BUILD_TYPE=Release ..
                     make Boost_builder

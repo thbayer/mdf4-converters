@@ -35,8 +35,6 @@ pipeline {
                         sh '''
                             mkdir build
                             cd build
-                            export http_proxy=http://172.17.0.1:3128
-                            export https_proxy=http://172.17.0.1:3128
                             cmake -DCMAKE_BUILD_TYPE=Release ..
                             make Boost_builder
                             make botan_builder
@@ -57,8 +55,6 @@ pipeline {
                         sh '''
                             mkdir build
                             cd build
-                            export http_proxy=http://172.17.0.1:3128
-                            export https_proxy=http://172.17.0.1:3128
                             cmake -DCMAKE_BUILD_TYPE=Release ..
                             make Boost_builder
                             make botan_builder

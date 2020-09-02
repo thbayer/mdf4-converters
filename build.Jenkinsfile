@@ -1,11 +1,12 @@
 #!/usr/bin/env groovy
+/*
 
 properties([
     parameters([
         booleanParam(defaultValue: (BRANCH_NAME == "etas"), description: '''Do you want to deploy this build to the Artifactory?''', name: 'IsDeployToArtifactory'),
     ])
 ])
-
+*/
 
 /**
 Print the node and the workspace where the script is executed.
@@ -15,6 +16,35 @@ def echoWorkspace()
     echo "Running on node ${env.NODE_NAME} in workspace ${env.WORKSPACE}."
 }
 
+
+try
+{
+    stage('Setup & Checkout')
+    {
+        node ('Docker')
+        {
+            try
+            {
+                // Checkout the repo in a shared git workspace
+              	echoWorkspace()
+                timeout(20)
+                {
+	              	// Cleanup & checkout
+                	deleteDir()
+					checkout scm
+					// Stash the git workspace
+                    stash "repo"
+                }
+			}
+            finally
+            {
+            }
+        }
+    }
+}
+
+
+/*
 pipeline {
     agent none 
     
@@ -95,3 +125,4 @@ pipeline {
         }
     }
 }
+*/

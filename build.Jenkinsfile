@@ -23,6 +23,7 @@ pipeline {
         stage("Checkout") {
             steps {
                 echo "Fetching sources ...."
+                echoWorkspace()
             }
         }
 /*            

@@ -13,6 +13,7 @@ Print the node and the workspace where the script is executed.
 def echoWorkspace()
 {
     echo "Running on node ${env.NODE_NAME} in workspace ${env.WORKSPACE}."
+    echo "Job name = ${env.JOB_NAME} buildNumber = ${env.BUILD_NUMBER}."
 }
 
 pipeline {
@@ -24,7 +25,7 @@ pipeline {
                 echo "Fetching sources ...."
             }
         }
-            
+/*            
         stage("Build") {
             parallel {
                 stage("Debian") {
@@ -74,7 +75,7 @@ pipeline {
                 echo "Deploying to artifactory ..."
             }
         }
-        
+*/        
     }
     post {
         always {

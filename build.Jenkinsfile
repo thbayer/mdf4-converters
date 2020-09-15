@@ -27,7 +27,7 @@ pipeline {
             }
         }
 
-       lock(resource: "LockableResource_1")
+       lock(resource: 'LockableResource_1')
        {
         stage("Build") {
             parallel {
@@ -71,7 +71,7 @@ pipeline {
                     }   
                 }
             }
-        }
+       }
        }
         stage("Deploy") {
             steps {

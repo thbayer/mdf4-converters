@@ -27,6 +27,8 @@ pipeline {
             }
         }
 
+       lock(resource: "LockableResource_1")
+       {
         stage("Build") {
             parallel {
                 stage("Debian") {
@@ -70,7 +72,7 @@ pipeline {
                 }
             }
         }
-        
+       }
         stage("Deploy") {
             steps {
                 echo "Deploying to artifactory ..."
